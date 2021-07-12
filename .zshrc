@@ -8,16 +8,16 @@ export ZSH="/Users/qetroux/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-#ZSH_THEME="robbyrussell"
-echo $RANDOM_THEME
-#echo $ZSH_THEME
+#ZSH_THEME=random
+#echo $RANDOM_THEME
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
 # a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 #ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-ZSH_THEME=random
+ZSH_THEME="lambda"
+echo $ZSH_THEME
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -103,3 +103,46 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# set ~/.local/bin in PATH
+export PATH="~/.local/bin:$PATH"
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
+
+# hadoop configs
+#export HADOOP_HOME="/usr/local/Cellar/hadoop/3.3.0"
+#export PATH="$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin"
+
+#export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-15.jdk/Contents/Home"
+
+export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
+
+alias piCluster="ssh pi@raspberry-01"
+alias whalegate="cd ~/Codestates/de/whalegate"
+alias c_prac="cd ~/Documents/Programming/programming_language_journey"
+
+# nvim setup
+alias vim=nvim
