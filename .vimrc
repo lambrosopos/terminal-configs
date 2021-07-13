@@ -256,17 +256,6 @@ nnoremap <silent> <space>c  :<C-u>CocList commands<cr>
 nnoremap <silent> <space>o  :<C-u>CocList outline<cr>
 " Search workspace symbols
 
-
-" Use `:Format` to format current buffer
-"nnoremap <silent> <leader>f :call CocAction('format')<cr>
-"command! -nargs=0 Format :call CocAction('format')
-
-" Use `:Fold` to fold current buffer
-"command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" use `:OR` for organize import of current buffer
-"command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
 " ======================
 "python settings 
 " ======================
