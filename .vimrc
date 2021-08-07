@@ -67,7 +67,6 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'mattn/emmet-vim'
 Plugin 'tpope/vim-obsession'
-Plugin 'dense-analysis/ale'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'prettier/vim-prettier', {
             \ 'do': 'yarn install',
@@ -104,9 +103,6 @@ nnoremap <leader>F :FZF<CR>
 
 let g:fzf_preview_window = ['right:50%', 'ctrl-/']
 
-" Fix with ALE
-"nnoremap <leader>A :ALELint<CR> :ALEFix<CR>
-
 nnoremap <leader>h <C-w>h <CR>
 nnoremap <leader>j <C-w>j <CR>
 nnoremap <leader>k <C-w>k <CR>
@@ -131,43 +127,6 @@ if has("persistent_undo")
     set undodir="$HOME/.undodir"
     set undofile
 endif
-
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_text_changed = 0
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_save = 0
-let g:ale_fix_on_save = 0
-
-
-let g:ale_linters = {
-\   'html':[
-\       'tidy',
-\       'prettier',
-\       'html-beautify',
-\    ],
-\   'python':[
-\       'pylint'
-\   ]
-\}
-
-let g:ale_fixers = {
-\   '*':[
-\       'remove_trailing_lines',
-\       'trim_whitespace'
-\   ],
-\   'html':[
-\       'tidy',
-\       'prettier',
-\       'html-beautify',
-\    ],
-\   'python':[
-\       'autopep8',
-\       'black',
-\       'isort',
-\       'reorder-python-imports',
-\       'yapf',
-\    ]
-\}
 
 " ======================
 " coc configs (for c++)
