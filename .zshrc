@@ -132,17 +132,7 @@ export PATH="/usr/local/lib/ruby/gems/3.0.0/bin:$PATH"
 # uninstall by removing these lines
 [[ -f ~/.config/tabtab/__tabtab.zsh ]] && . ~/.config/tabtab/__tabtab.zsh || true
 
-# hadoop configs
-#export HADOOP_HOME="/usr/local/Cellar/hadoop/3.3.0"
-#export PATH="$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin"
-
 #export JAVA_HOME="/Library/Java/JavaVirtualMachines/jdk-15.jdk/Contents/Home"
-
-export PATH="/Applications/Sublime Text.app/Contents/SharedSupport/bin:$PATH"
-
-alias piCluster="ssh pi@raspberry-01"
-alias whalegate="cd ~/Codestates/de/whalegate"
-alias c_prac="cd ~/Documents/Programming/programming_language_journey"
 
 # nvim setup
 alias vim=nvim
