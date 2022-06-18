@@ -64,3 +64,9 @@ $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ```
 
 4) Enter into tmux and install plugins or (prefix + I)
+
+
+
+## NVIM Lua edition
+
+For nvim with lua settings, move the `nvim-lua` folder to `$HOME/.config/nvim`
