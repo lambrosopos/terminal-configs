@@ -3,7 +3,16 @@ vim.cmd [[packadd packer.nvim]]
 
 -- Plugin Setups
 require('nvim-tree').setup()
-require('lualine').setup()
+
+-- Theme Setup for Lualine
+-- If need to use custom theme, uncomment below line
+-- require('themes.evil_lualine')
+require('lualine').setup {
+    options = { 
+        theme = 'papercolor_dark' ,
+        section_separators = { left = ' ', right = ' ' }
+    }
+}
 
 return require('packer').startup(function(use)
   -- Packer self manage block
