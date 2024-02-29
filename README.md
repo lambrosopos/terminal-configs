@@ -70,3 +70,17 @@ $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ## NVIM Lua edition
 
 For nvim with lua settings, move the `nvim-lua` folder to `$HOME/.config/nvim`
+
+
+## Alacritty Terminal Settings
+
+Install Alacritty through github release
+- https://github.com/alacritty/alacritty
+
+Download MonoLisa font from personal google drive
+
+Run the following
+```sh
+$ mkdir -p ~/.config/alacritty/
+$ mv ./alacritty.toml ~/.config/alacritty/alacritty.toml
+```
