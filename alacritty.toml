@@ -40,3 +40,9 @@ style="Bold Italic"
 [colors.line_indicator]
 foreground="#000000"
 background="#ffffff"
+
+[selection]
+save_to_clipboard=true
+
+[mouse]
+hide_when_typing=true
