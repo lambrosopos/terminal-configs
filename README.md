@@ -84,3 +84,8 @@ Run the following
 $ mkdir -p ~/.config/alacritty/
 $ mv ./alacritty.toml ~/.config/alacritty/alacritty.toml
 ```
+
+# If using MonoLisa as default with nerd font
+
+If using MonoLisa as font and also trying to include nerd icons for nvim settings and ui, please refer to the following github to patch.
+- https://github.com/daylinmorgan/monolisa-nerdfont-patch
