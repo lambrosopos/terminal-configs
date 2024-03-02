@@ -69,8 +69,12 @@ $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 ## NVIM Lua edition
 
-For nvim with lua settings, move the `nvim-lua` folder to `$HOME/.config/nvim`
+Settings are done using nvchad. Copy `nvim` folder to `$HOME/.config/nvim`.
 
+* May need MonoLisa font (with nerd font patch)
+
+-- Outdated (2024.02.24)
+-- For nvim with lua settings, move the `nvim-lua` folder to `$HOME/.config/nvim`
 
 ## Alacritty Terminal Settings
 
