@@ -73,7 +73,6 @@ $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 4) Enter into tmux and install plugins or (prefix + I)
 
 
-
 ## NVIM Lua edition
 
 Settings are done using nvchad. Copy `nvim` folder to `$HOME/.config/nvim`.
