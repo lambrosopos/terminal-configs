@@ -54,6 +54,13 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```sh
 $ cp ./.tmux.conf ~/.tmux.conf
 ```
+- or -
+
+Link the `.tmux.conf` file so that they stay synced.
+
+```sh
+$ ln -s /path/to/this/repo/.tmux.conf /home/your_username/.tmux.conf
+```
 
 3) Install tpm or tmux plugin manager (go to [tpm repository](https://github.com/tmux-plugins/tpm)
 
@@ -70,6 +77,14 @@ $ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 ## NVIM Lua edition
 
 Settings are done using nvchad. Copy `nvim` folder to `$HOME/.config/nvim`.
+
+- or -
+
+Link the `nvim` folder so that they stay synced.
+
+```sh
+$ ln -s /path/to/this/repo/nvim /home/your_username/.config/nvim
+```
 
 * May need MonoLisa font (with nerd font patch)
 
