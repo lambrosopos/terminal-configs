@@ -82,7 +82,7 @@ Settings are done using nvchad. Copy `nvim` folder to `$HOME/.config/nvim`.
 Link the `nvim` folder so that they stay synced.
 
 ```sh
-$ ln -s /path/to/this/repo/nvim /home/your_username/.config/nvim
+$ ln -s /path/to/this/repo/nvim /home/your_username/.config/
 ```
 
 * May need MonoLisa font (with nerd font patch)
