@@ -86,6 +86,7 @@ $ ln -s /path/to/this/repo/nvim /home/your_username/.config/
 ```
 
 * May need MonoLisa font (with nerd font patch)
+* For Treesitter vimdoc error, run `:TSInstall vimdoc` in nvim
 
 -- Outdated (2024.02.24)
 -- For nvim with lua settings, move the `nvim-lua` folder to `$HOME/.config/nvim`
