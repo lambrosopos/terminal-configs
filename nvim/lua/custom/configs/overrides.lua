@@ -12,6 +12,7 @@ M.treesitter = {
     "c",
     "markdown",
     "markdown_inline",
+    "python"
   },
   indent = {
     enable = true,
@@ -40,6 +41,9 @@ M.mason = {
 
     -- shell stuff
     "shfmt",
+
+    -- python stuff
+    "pyright"
   },
 }
 
