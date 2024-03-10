@@ -1,6 +1,5 @@
 ---@type MappingsTable
 local M = {}
-
 M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
@@ -26,8 +25,7 @@ M.general = {
 -- more keybinds!
 M.vim_fugitive = {
   n = {
-    ["<leader>go"] = { "<cmd> tab Git <CR>", "Git Overview" },
-    ["<leader>gc"] = { "<cmd> Git commit <CR>", "Git Commit"},
+    ["<leader>go"] = { "<cmd> tab Git <CR>", "Git Overview" }
   }
 }
 
