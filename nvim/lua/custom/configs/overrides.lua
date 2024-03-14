@@ -12,7 +12,8 @@ M.treesitter = {
     "c",
     "markdown",
     "markdown_inline",
-    "python"
+    "python",
+    "java"
   },
   indent = {
     enable = true,
@@ -43,7 +44,10 @@ M.mason = {
     "shfmt",
 
     -- python stuff
-    "pyright"
+    "pyright",
+
+    -- java
+    "jdtls"
   },
 }
 
