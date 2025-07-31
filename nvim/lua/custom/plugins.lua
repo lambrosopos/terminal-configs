@@ -65,6 +65,18 @@ local plugins = {
   --   "mg979/vim-visual-multi",
   --   lazy = false,
   -- }
+  {
+    "SmiteshP/nvim-navic"
+  },
+
+  {
+    "MunifTanjim/nui.nvim"
+  },
+
+  {
+    "SmiteshP/nvim-navbuddy",
+    opts = { lsp = { auto_attach = true } }
+  },
 }
 
 return plugins

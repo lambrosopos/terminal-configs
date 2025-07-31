@@ -29,4 +29,10 @@ M.vim_fugitive = {
   }
 }
 
+M.nav_buddy = {
+  n = {
+    ["<leader>nb"] = { "<cmd> Navbuddy <CR>", "Navbuddy Explorer"}
+  }
+}
+
 return M
