@@ -75,7 +75,8 @@ local plugins = {
 
   {
     "SmiteshP/nvim-navbuddy",
-    opts = { lsp = { auto_attach = true } }
+    opts = { lsp = { auto_attach = true } },
+    lazy = false
   },
 }
 
