@@ -2,40 +2,32 @@
 program="/bin/zsh"
 
 [window]
-decorations="None"
+decorations="Transparent"
 opacity=0.95
 startup_mode="Windowed"
-dynamic_padding=false
+dynamic_padding=true
 
 [window.dimensions]
 columns=90
 lines=22
 
+[window.position]
+x=400
+y=100
+
 [window.padding]
-x=10
-y=22
+x=5
+y=25
 
 [scrolling]
 history = 100000
 
 [font]
+normal = { family = "MonoLisa Nerd Font", style = "Regular" }
+bold = { family = "MonoLisa Nerd Font", style = "Bold" }
+italic = { family = "MonoLisa Nerd Font", style = "Italic" }
+bold_italic = { family = "MonoLisa Nerd Font", style = "Bold Italic" }
 size=11.5
-
-[font.normal]
-family="MonoLisa"
-style="Regular"
-
-[font.bold]
-family="MonoLisa"
-style="Bold"
-
-[font.italic]
-family="MonoLisa"
-style="Regular Italic"
-
-[font.bold_italic]
-family="MonoLisa"
-style="Bold Italic"
 
 [colors.line_indicator]
 foreground="#000000"
@@ -46,3 +38,6 @@ save_to_clipboard=true
 
 [mouse]
 hide_when_typing=true
+
+[env]
+TERM = "xterm-256color"

@@ -52,6 +52,20 @@ local plugins = {
     lazy = false,
   },
 
+  {
+   "SmiteshP/nvim-navic",
+  },
+
+  {
+   "MunifTanjim/nui.nvim",
+  },
+
+  {
+    "SmiteshP/nvim-navbuddy",
+    opts = { lsp = { auto_attach = true } },
+    lazy = false,
+  },
+
   -- To make a plugin not be loaded
   {
     "NvChad/nvim-colorizer.lua",
