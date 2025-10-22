@@ -63,3 +63,11 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
   end,
 })
+
+-- Refresh NvimTree after git operations
+vim.api.nvim_create_autocmd("User", {
+  pattern = "FugitiveChanged",
+  callback = function()
+    require("nvim-tree.api").tree.reload()
+  end,
+})
