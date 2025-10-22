@@ -56,6 +56,15 @@ M.nvim_tree = {
     enable = true,
     update_root = false,
   },
+  actions = {
+    open_file = {
+      quit_on_open = false,
+    },
+  },
+  filesystem_watchers = {
+    enable = true,
+    debounce_delay = 50,
+  },
 }
 
 M.nvim_treesitter = {
