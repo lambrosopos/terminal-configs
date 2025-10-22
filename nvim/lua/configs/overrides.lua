@@ -1,5 +1,15 @@
 local M = {}
 
+M.nvim_cmp = {
+  preselect = require("cmp").PreselectMode.None,
+  completion = {
+    completeopt = "menu,menuone,noinsert,noselect",
+  },
+  mapping = {
+    ['<CR>'] = require("cmp").mapping.confirm({select = false}),
+  }
+}
+
 M.mason = {
   ensure_installed = {
     -- lua stuff
@@ -60,6 +70,29 @@ M.nvim_treesitter = {
     "java",
     "go",
   },
+}
+
+M.nvim_navbuddy = {
+  lsp = { auto_attach = true },
+}
+
+
+M.amazonq = {
+  ssoStartUrl = "https://koreanair.awsapps.com/start",  -- Authenticate with Amazon Q Free Tier
+
+  inline_suggest = true,
+
+  filetypes = {
+    'amazonq', 'bash', 'java', 'python', 'typescript', 'javascript', 'csharp',
+    'ruby', 'kotlin', 'sh', 'sql', 'c', 'cpp', 'go', 'rust', 'lua',
+  },
+
+  on_chat_open = function()
+    vim.cmd[[
+      vsplit
+      set wrap breakindent nonumber norelativenumber nolist
+    ]]
+  end,
 }
 
 return M
