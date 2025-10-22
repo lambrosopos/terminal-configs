@@ -42,6 +42,10 @@ M.mason = {
 }
 
 M.nvim_tree = {
+  git = {
+    enable = true,
+    ignore = false,
+  },
   disable_netrw = true,
   hijack_netrw = true,
   hijack_cursor = true,
