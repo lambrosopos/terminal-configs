@@ -33,7 +33,7 @@ require "options"
 require "autocmds"
 
 vim.schedule(function()
-  require "mappings"
+  require "mappings.mappings"
 end)
 
 vim.api.nvim_create_autocmd("VimEnter", {

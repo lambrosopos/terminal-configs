@@ -1,4 +1,4 @@
-require "nvchad.mappings"
+require "mappings.nvchad_mappings"
 
 -- add yours here
 
@@ -16,7 +16,7 @@ map( "n", "<leader>wo", "<CMD> only <CR>", { desc = "Remove all pane except curr
 map("n", "go", "<CMD> tab Git <CR>", { desc = "Open vim-fugitive Git Window" })
 
 -- NavBuddy
-map("n", "<leader>gb", "<CMD> Navbuddy <CR>", { desc = "Open Nvim Navbuddy" })
+map("n", "<leader>nb", "<CMD> Navbuddy <CR>", { desc = "Open Nvim Navbuddy" })
 
 -- Amazon Q
 map("n", "<leader>zt", "<CMD> AmazonQ toggle <CR>", { desc = "Toggle AmazonQ" })
