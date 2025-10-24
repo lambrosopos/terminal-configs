@@ -28,7 +28,7 @@ bold = { family = "MonoLisa Nerd Font", style = "Bold" }
 italic = { family = "MonoLisa Nerd Font", style = "Italic" }
 bold_italic = { family = "MonoLisa Nerd Font", style = "Bold Italic" }
 size=12
-offset = { x = 1, y = 1 }
+offset = { x = 1, y = 0 }
 
 [colors.line_indicator]
 foreground="#000000"
