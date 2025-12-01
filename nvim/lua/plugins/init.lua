@@ -55,10 +55,30 @@ return {
   },
 
   {
+    "lewis6991/gitsigns.nvim",
+    cmd = { "Gitsigns" },
+    opts = overrides.gitsigns,
+  },
+
+  {
     name = "amazonq",
     cmd = { "AmazonQ" },
     url = "https://github.com/awslabs/amazonq.nvim.git",
 
     opts = overrides.amazonq,
+  },
+
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = overrides.todo_comments,
+    lazy=false,
+  },
+
+  {
+    "linuxswords/nvim-chess",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = { "ChessDailyPuzzle" },
+    opts = overrides.nvim_chess,
   },
 }
