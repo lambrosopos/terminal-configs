@@ -25,3 +25,13 @@ map("n", "<leader>zo", "<CMD> AmazonQ optimize <CR>", { desc = "Optimize the cur
 map("n", "<leader>zr", "<CMD> AmazonQ refactor <CR>", { desc = "Refactor the current code" })
 map("n", "<leader>zf", "<CMD> AmazonQ fix <CR>", { desc = "Fix the current code" })
 
+-- Copilot
+map('i', '<C-f>', 'copilot#Accept("\\<CR>")', {
+  expr = true,
+  replace_keycodes = false
+})
+
+-- Claude Code
+map('n', '<leader>cc', '<CMD>ClaudeCode<CR>', { desc = 'Toggle Claude Code' })
+
+

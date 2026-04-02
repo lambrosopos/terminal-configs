@@ -81,4 +81,24 @@ return {
     cmd = { "ChessDailyPuzzle" },
     opts = overrides.nvim_chess,
   },
+
+  {
+    "github/copilot.vim",
+    lazy = false,
+    init = function()
+      -- Disables the default <Tab> mapping so it doesn't conflict with nvim-cmp
+      vim.g.copilot_no_tab_map = true
+    end,
+  },
+
+  {
+    "greggh/claude-code.nvim",
+    cmd = { "ClaudeCode" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    config = function()
+      require("claude-code").setup(overrides.claude_code)
+    end
+  },
 }

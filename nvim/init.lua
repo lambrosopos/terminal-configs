@@ -1,6 +1,24 @@
 vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
 vim.g.mapleader = " "
 
+-----------------------------------------------------------
+-- LSP Log Management (Add this here)
+-----------------------------------------------------------
+-- 1. Set the level to only record errors (stops the bloat)
+vim.lsp.set_log_level("error")
+
+-- 2. Optional: Automatically clear the log if it gets too big (e.g., 10MB)
+local lsp_log_path = vim.lsp.get_log_path()
+local max_size = 10 * 1024 * 1024 -- 10 MB
+local f = io.open(lsp_log_path, "r")
+if f then
+    local size = f:seek("end")
+    f:close()
+    if size > max_size then
+        os.remove(lsp_log_path)
+    end
+end
+
 -- bootstrap lazy and all plugins
 local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
