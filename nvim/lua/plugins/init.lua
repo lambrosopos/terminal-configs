@@ -84,7 +84,7 @@ return {
 
   {
     "github/copilot.vim",
-    lazy = false,
+    lazy = true,
     init = function()
       -- Disables the default <Tab> mapping so it doesn't conflict with nvim-cmp
       vim.g.copilot_no_tab_map = true
@@ -101,4 +101,16 @@ return {
       require("claude-code").setup(overrides.claude_code)
     end
   },
+  {
+    "r-pletnev/pdfreader.nvim",
+    lazy = false,
+    cmd = { "PDFReader" },
+    dependencies = {
+      "folke/snacks.nvim",
+      "nvim-telescope/telescope.nvim",
+    },
+    config = function()
+      require("pdfreader").setup()
+    end,
+  }
 }
