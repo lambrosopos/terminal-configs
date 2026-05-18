@@ -23,10 +23,10 @@ y=1
 history = 100000
 
 [font]
-normal = { family = "MonoLisa Nerd Font", style = "Regular" }
-bold = { family = "MonoLisa Nerd Font", style = "Bold" }
-italic = { family = "MonoLisa Nerd Font", style = "Italic" }
-bold_italic = { family = "MonoLisa Nerd Font", style = "Bold Italic" }
+normal = { family = "MonoLisa Custom-001", style = "Regular" }
+bold = { family = "MonoLisa Custom-001", style = "Bold" }
+italic = { family = "MonoLisa Custom-001", style = "Italic" }
+bold_italic = { family = "MonoLisa Custom-001", style = "Bold Italic" }
 
 size = 12
 offset = { x = 1, y = 0 }
