@@ -41,6 +41,10 @@ M.mason = {
 
     -- go
     "gopls",
+
+    -- kotlin
+    "kotlin-language-server",
+    "ktlint",
   },
 }
 
@@ -88,6 +92,7 @@ M.nvim_treesitter = {
     "typescript",
     "java",
     "go",
+    "kotlin",
   },
 }
 

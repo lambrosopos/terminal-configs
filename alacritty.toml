@@ -23,13 +23,12 @@ y=1
 history = 100000
 
 [font]
-normal = { family = "MonoLisaCustom001 Nerd Font", style = "Regular" }
-bold = { family = "MonoLisaCustom001 Nerd Font", style = "Bold" }
-italic = { family = "MonoLisaCustom001 Nerd Font", style = "Italic" }
-bold_italic = { family = "MonoLisaCustom001 Nerd Font", style = "Bold Italic" }
+normal = { family = "MonoLisa Static", style = "Regular" }
+bold = { family = "MonoLisa Static", style = "Bold" }
+italic = { family = "MonoLisa Static", style = "Italic" }
+bold_italic = { family = "MonoLisa Static", style = "Bold Italic" }
 
-size = 12
-offset = { x = 1, y = 0 }
+size = 11
 
 [colors.line_indicator]
 foreground="#000000"

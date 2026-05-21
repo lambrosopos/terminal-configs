@@ -1,7 +1,7 @@
 local lspconfig = require("nvchad.configs.lspconfig")
 lspconfig.defaults()
 
-local servers = { "html", "cssls", "pyright", "gopls", "terraformls", "ts_ls", "tailwindcss", }
+local servers = { "html", "cssls", "pyright", "gopls", "terraformls", "ts_ls", "tailwindcss", "kotlin_ls", }
 
 -- 1. Enable standard servers (The modern 'bulk' way)
 vim.lsp.enable(servers)
