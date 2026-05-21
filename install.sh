@@ -21,7 +21,7 @@ if command -v nvim &>/dev/null && nvim --version 2>/dev/null | grep -qF "NVIM v$
   echo "  neovim ${NVIM_VERSION} already installed"
 else
   _tmp="$(mktemp -d)"
-  trap 'rm -rf "$_tmp"' RETURN
+  trap 'rm -rf "$_tmp"' EXIT
   if [[ "$OS" == "Darwin" ]]; then
     _arch="$(uname -m)"
     curl -fsSL "https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim-macos-${_arch}.tar.gz" \
@@ -70,10 +70,12 @@ elif [[ "$OS" == "Linux" ]]; then
   FONT_DIR="$HOME/.local/share/fonts"
 fi
 mkdir -p "$FONT_DIR"
+shopt -s nullglob
 for f in "$REPO_DIR"/fonts/*.ttf; do
   cp "$f" "$FONT_DIR/"
   echo "  installed $(basename "$f")"
 done
+shopt -u nullglob
 if [[ "$OS" == "Linux" ]] && command -v fc-cache &>/dev/null; then
   fc-cache -f "$FONT_DIR"
   echo "  font cache refreshed"
@@ -85,16 +87,15 @@ if [[ "$OS" == "Linux" ]] && grep -qi microsoft /proc/version 2>/dev/null && com
   _win_font_dir="/mnt/c/Users/${_win_user}/AppData/Local/Microsoft/Windows/Fonts"
   if [[ -n "$_win_user" && -d "/mnt/c/Users/${_win_user}" ]]; then
     mkdir -p "$_win_font_dir"
+    shopt -s nullglob
     for f in "$REPO_DIR"/fonts/*.ttf; do
       cp "$f" "$_win_font_dir/"
       echo "  installed $(basename "$f")"
     done
+    shopt -u nullglob
     powershell.exe -Command "
       Get-ChildItem 'C:/Users/${_win_user}/AppData/Local/Microsoft/Windows/Fonts' -Filter '*.ttf' | ForEach-Object {
-        Set-ItemProperty \
-          -Path 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts' \
-          -Name (\$_.BaseName + ' (TrueType)') \
-          -Value \$_.FullName -Force -ErrorAction SilentlyContinue
+        Set-ItemProperty -Path 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts' -Name (\$_.BaseName + ' (TrueType)') -Value \$_.FullName -Force -ErrorAction SilentlyContinue
       }
     " 2>/dev/null && echo "  registered fonts in Windows registry"
   else
@@ -111,12 +112,22 @@ _link "$REPO_DIR/alacritty.toml" ~/.config/alacritty/alacritty.toml
 mkdir -p ~/.config/ghostty
 _link "$REPO_DIR/ghostty.config" ~/.config/ghostty/config
 
+TPM_VERSION="3.1.0"
+
 echo "==> Installing TPM (tmux plugin manager)..."
-if [[ ! -d ~/.tmux/plugins/tpm ]]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm --branch v3.1.0 --depth 1
-  echo "  TPM installed"
+_tpm_tag=""
+if [[ -d ~/.tmux/plugins/tpm ]]; then
+  _tpm_tag="$(git -C ~/.tmux/plugins/tpm describe --tags --exact-match 2>/dev/null || true)"
+fi
+if [[ "$_tpm_tag" == "v${TPM_VERSION}" ]]; then
+  echo "  TPM ${TPM_VERSION} already installed"
 else
-  echo "  TPM already installed"
+  if [[ -d ~/.tmux/plugins/tpm ]]; then
+    echo "  upgrading TPM from ${_tpm_tag:-unknown} to ${TPM_VERSION}..."
+    rm -rf ~/.tmux/plugins/tpm
+  fi
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm --branch "v${TPM_VERSION}" --depth 1
+  echo "  TPM installed"
 fi
 
 echo "==> Installing zsh..."
@@ -175,6 +186,7 @@ fi
 
 PYTHON_VERSION="3.12.7"
 GO_VERSION="1.23.4"
+NODE_VERSION="24.15.0"
 
 # shellcheck disable=SC1091
 . "$HOME/.asdf/asdf.sh"
@@ -204,6 +216,16 @@ if ! asdf list golang 2>/dev/null | grep -qF "${GO_VERSION}"; then
 fi
 asdf set --home golang "${GO_VERSION}"
 echo "  Go ${GO_VERSION} set as global default"
+
+echo "==> Installing Node.js ${NODE_VERSION} via asdf..."
+if ! asdf plugin list 2>/dev/null | grep -qx nodejs; then
+  asdf plugin add nodejs
+fi
+if ! asdf list nodejs 2>/dev/null | grep -qF "${NODE_VERSION}"; then
+  asdf install nodejs "${NODE_VERSION}"
+fi
+asdf set --home nodejs "${NODE_VERSION}"
+echo "  Node.js ${NODE_VERSION} set as global default"
 
 echo "==> Checking nv=nvim alias in ~/.zshrc..."
 if ! grep -qF "alias nv=nvim" ~/.zshrc 2>/dev/null; then
