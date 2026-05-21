@@ -79,6 +79,29 @@ if [[ "$OS" == "Linux" ]] && command -v fc-cache &>/dev/null; then
   echo "  font cache refreshed"
 fi
 
+if [[ "$OS" == "Linux" ]] && grep -qi microsoft /proc/version 2>/dev/null && command -v powershell.exe &>/dev/null; then
+  echo "==> Installing fonts on Windows side (WSL2)..."
+  _win_user="$(powershell.exe -Command '$env:USERNAME' 2>/dev/null | tr -d '\r')"
+  _win_font_dir="/mnt/c/Users/${_win_user}/AppData/Local/Microsoft/Windows/Fonts"
+  if [[ -n "$_win_user" && -d "/mnt/c/Users/${_win_user}" ]]; then
+    mkdir -p "$_win_font_dir"
+    for f in "$REPO_DIR"/fonts/*.ttf; do
+      cp "$f" "$_win_font_dir/"
+      echo "  installed $(basename "$f")"
+    done
+    powershell.exe -Command "
+      Get-ChildItem 'C:/Users/${_win_user}/AppData/Local/Microsoft/Windows/Fonts' -Filter '*.ttf' | ForEach-Object {
+        Set-ItemProperty \
+          -Path 'HKCU:\Software\Microsoft\Windows NT\CurrentVersion\Fonts' \
+          -Name (\$_.BaseName + ' (TrueType)') \
+          -Value \$_.FullName -Force -ErrorAction SilentlyContinue
+      }
+    " 2>/dev/null && echo "  registered fonts in Windows registry"
+  else
+    echo "  WARN: could not detect Windows username, skipping Windows font install"
+  fi
+fi
+
 echo "==> Linking configs..."
 mkdir -p ~/.config
 _link "$REPO_DIR/nvim" ~/.config/nvim
@@ -90,7 +113,7 @@ _link "$REPO_DIR/ghostty.config" ~/.config/ghostty/config
 
 echo "==> Installing TPM (tmux plugin manager)..."
 if [[ ! -d ~/.tmux/plugins/tpm ]]; then
-  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm --branch v3.1.0 --depth 1
   echo "  TPM installed"
 else
   echo "  TPM already installed"
