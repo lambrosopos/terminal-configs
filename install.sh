@@ -126,6 +126,62 @@ else
   echo "  installed oh-my-zsh"
 fi
 
+ASDF_VERSION="0.16.7"
+
+echo "==> Installing asdf ${ASDF_VERSION}..."
+_asdf_tag=""
+if [[ -d "$HOME/.asdf" ]]; then
+  _asdf_tag="$(git -C "$HOME/.asdf" describe --tags --exact-match 2>/dev/null || true)"
+fi
+if [[ "$_asdf_tag" == "v${ASDF_VERSION}" ]]; then
+  echo "  asdf ${ASDF_VERSION} already installed"
+else
+  if [[ -d "$HOME/.asdf" ]]; then
+    echo "  upgrading asdf from ${_asdf_tag:-unknown} to ${ASDF_VERSION}..."
+    rm -rf "$HOME/.asdf"
+  fi
+  git clone https://github.com/asdf-vm/asdf.git "$HOME/.asdf" --branch "v${ASDF_VERSION}" --depth 1
+  echo "  installed asdf ${ASDF_VERSION}"
+fi
+if ! grep -qF 'asdf.sh' ~/.zshrc 2>/dev/null; then
+  echo '. "$HOME/.asdf/asdf.sh"' >> ~/.zshrc
+  echo "  added asdf source to ~/.zshrc"
+else
+  echo "  asdf already sourced in ~/.zshrc"
+fi
+
+PYTHON_VERSION="3.12.7"
+GO_VERSION="1.23.4"
+
+# shellcheck disable=SC1091
+. "$HOME/.asdf/asdf.sh"
+
+echo "==> Installing Python ${PYTHON_VERSION} via asdf..."
+if [[ "$OS" == "Linux" ]] && command -v apt-get &>/dev/null; then
+  sudo apt-get install -y \
+    build-essential libssl-dev zlib1g-dev libbz2-dev libreadline-dev \
+    libsqlite3-dev libncursesw5-dev libxml2-dev libxmlsec1-dev libffi-dev \
+    liblzma-dev tk-dev
+fi
+if ! asdf plugin list 2>/dev/null | grep -qx python; then
+  asdf plugin add python
+fi
+if ! asdf list python 2>/dev/null | grep -qF "${PYTHON_VERSION}"; then
+  asdf install python "${PYTHON_VERSION}"
+fi
+asdf set --home python "${PYTHON_VERSION}"
+echo "  Python ${PYTHON_VERSION} set as global default"
+
+echo "==> Installing Go ${GO_VERSION} via asdf..."
+if ! asdf plugin list 2>/dev/null | grep -qx golang; then
+  asdf plugin add golang
+fi
+if ! asdf list golang 2>/dev/null | grep -qF "${GO_VERSION}"; then
+  asdf install golang "${GO_VERSION}"
+fi
+asdf set --home golang "${GO_VERSION}"
+echo "  Go ${GO_VERSION} set as global default"
+
 echo "==> Checking nv=nvim alias in ~/.zshrc..."
 if ! grep -qF "alias nv=nvim" ~/.zshrc 2>/dev/null; then
   echo "alias nv=nvim" >> ~/.zshrc
