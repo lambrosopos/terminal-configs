@@ -96,6 +96,36 @@ else
   echo "  TPM already installed"
 fi
 
+echo "==> Installing zsh..."
+if command -v zsh &>/dev/null; then
+  echo "  zsh already installed"
+else
+  if [[ "$OS" == "Darwin" ]]; then
+    brew install zsh
+  elif [[ "$OS" == "Linux" ]]; then
+    if command -v apt-get &>/dev/null; then
+      sudo apt-get install -y zsh
+    elif command -v brew &>/dev/null; then
+      brew install zsh
+    else
+      echo "WARN: Could not install zsh automatically. Install it manually."
+    fi
+  fi
+  echo "  installed zsh"
+fi
+if [[ "$SHELL" != "$(command -v zsh)" ]]; then
+  chsh -s "$(command -v zsh)"
+  echo "  set zsh as default shell (re-login to take effect)"
+fi
+
+echo "==> Installing oh-my-zsh..."
+if [[ -d "$HOME/.oh-my-zsh" ]]; then
+  echo "  oh-my-zsh already installed"
+else
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  echo "  installed oh-my-zsh"
+fi
+
 echo "==> Checking nv=nvim alias in ~/.zshrc..."
 if ! grep -qF "alias nv=nvim" ~/.zshrc 2>/dev/null; then
   echo "alias nv=nvim" >> ~/.zshrc
