@@ -31,9 +31,21 @@ else
   elif [[ "$OS" == "Linux" ]]; then
     _arch="$(uname -m)"
     [[ "$_arch" == "aarch64" ]] && _arch="arm64"
+    _appimage="$_tmp/nvim.appimage"
     curl -fsSL "https://github.com/neovim/neovim/releases/download/v${NVIM_VERSION}/nvim-linux-${_arch}.appimage" \
-      -o "$_tmp/nvim.appimage"
-    sudo install -m 755 "$_tmp/nvim.appimage" /usr/local/bin/nvim
+      -o "$_appimage"
+    chmod +x "$_appimage"
+    if "$_appimage" --version &>/dev/null; then
+      sudo install -m 755 "$_appimage" /usr/local/bin/nvim
+    else
+      echo "  pre-built binary requires newer glibc; building from source..."
+      sudo apt-get install -y ninja-build gettext cmake curl build-essential luajit libluajit-5.1-dev
+      git clone https://github.com/neovim/neovim "$_tmp/neovim" \
+        --branch "v${NVIM_VERSION}" --depth 1
+      cmake -S "$_tmp/neovim" -B "$_tmp/neovim/build" -DCMAKE_BUILD_TYPE=Release
+      cmake --build "$_tmp/neovim/build" --parallel
+      sudo cmake --install "$_tmp/neovim/build" --prefix /usr/local
+    fi
   fi
   echo "  installed neovim ${NVIM_VERSION}"
 fi
