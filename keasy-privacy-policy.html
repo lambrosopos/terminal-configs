@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Keasy — Privacy Policy</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      max-width: 720px; margin: 0 auto; padding: 2.5rem 1.25rem;
+      font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: #1a1a1a; background: #ffffff;
+    }
+    h1 { font-size: 1.8rem; margin-bottom: .25rem; }
+    h2 { font-size: 1.2rem; margin-top: 2rem; }
+    h3 { font-size: 1.02rem; margin-top: 1.4rem; }
+    .updated { color: #666; font-size: .9rem; margin-top: 0; }
+    code { background: rgba(127,127,127,.15); padding: .1em .35em; border-radius: 4px; font-size: .9em; }
+    a { color: #0b66c3; }
+    ul { padding-left: 1.25rem; }
+    hr { border: none; border-top: 1px solid rgba(127,127,127,.25); margin: 2rem 0; }
+    @media (prefers-color-scheme: dark) {
+      body { color: #e6e6e6; background: #0d1117; }
+      .updated { color: #9aa4af; }
+      a { color: #58a6ff; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Keasy — Privacy Policy</h1>
+  <p class="updated">Last updated: 13 July 2026</p>
+
+  <p>Keasy ("the extension") is a browser extension that helps Korean Air
+  employees plan staff (ZED) travel. It shows a seat-availability calendar for a
+  chosen route and cabin, the destination's weather forecast, and an optional AI
+  ranking of candidate trips. This policy explains exactly what data the
+  extension touches and where it goes.</p>
+
+  <h2>The short version</h2>
+  <ul>
+    <li>The extension has <strong>no backend server of its own</strong> and
+      performs <strong>no analytics or tracking</strong>. The developer does
+      <strong>not</strong> receive, store, or have access to any of your data.</li>
+    <li>Data is only ever sent to the services required to make a feature work:
+      Korean Air's ZED system, Google Cloud (Vertex AI), and OpenWeather.</li>
+    <li>Your data is <strong>never sold or shared</strong> for advertising or any
+      purpose unrelated to the extension's function.</li>
+  </ul>
+
+  <h2>What data the extension accesses, and why</h2>
+
+  <h3>1. Your ZED session (cookies)</h3>
+  <p>To load seat availability and your trip listings, the extension makes
+  requests to <code>zed.koreanair.com</code> using your existing signed-in ZED
+  session cookies. These cookies are sent <strong>only back to
+  <code>zed.koreanair.com</code></strong> — the same server that issued them. The
+  extension does not read, copy, or transmit your cookies anywhere else.</p>
+
+  <h3>2. Your employee number</h3>
+  <p>On <code>zed.koreanair.com</code>, the extension reads your employee number
+  from the page (where ZED itself already stores it after you log in). It is kept
+  locally in the browser's extension storage and included in requests to the ZED
+  "My Trips" API so ZED can return your own listings. It is <strong>not</strong>
+  sent to the developer or to any third party other than ZED.</p>
+
+  <h3>3. Trip and route information (optional AI ranking)</h3>
+  <p>If you use the optional AI ranking feature, the extension sends the candidate
+  trips' <strong>airport codes, cabin class, and seat-availability counts</strong>
+  to Google Cloud Vertex AI (Gemini) to rank them. No names, contact details,
+  payment information, or other passenger data are included — only itinerary and
+  seat figures needed for the ranking. Authentication for this call uses a Google
+  OAuth token obtained through your browser; the token is held in memory for the
+  session and is not stored persistently or shared.</p>
+
+  <h3>4. Destination weather</h3>
+  <p>To show the forecast, the extension sends the <strong>destination airport's
+  city name</strong> (not your location) to OpenWeather's public API. Your own
+  device location is never accessed or transmitted.</p>
+
+  <h3>5. Local configuration</h3>
+  <p>Non-secret runtime configuration (the Google Cloud project and model to use)
+  is fetched from an internal Korean Air address and cached in the browser's local
+  extension storage. No personal data is contained in it.</p>
+
+  <h2>Data storage and retention</h2>
+  <p>The only data stored on your device (via the browser's
+  <code>chrome.storage.local</code>) is your employee number and the non-secret
+  runtime configuration. This data never leaves your browser except as described
+  above, and it is removed when you uninstall the extension or clear its
+  storage.</p>
+
+  <h2>Data we do <em>not</em> collect</h2>
+  <p>The extension does not collect or transmit your browsing history, page
+  content, keystrokes, mouse activity, device location, health data, financial or
+  payment data, or personal communications.</p>
+
+  <h2>Third-party services</h2>
+  <p>Requests made to provide the features above are subject to the privacy
+  policies of those services:</p>
+  <ul>
+    <li>Korean Air ZED (<code>zed.koreanair.com</code>)</li>
+    <li>Google Cloud / Vertex AI — <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
+    <li>OpenWeather — <a href="https://openweather.co.uk/privacy-policy">https://openweather.co.uk/privacy-policy</a></li>
+  </ul>
+
+  <h2>Changes to this policy</h2>
+  <p>If this policy changes, the "Last updated" date above will be revised.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy or the extension's data handling can be sent to
+  허공이 at <a href="mailto:lambrosopos@gmail.com">lambrosopos@gmail.com</a>.</p>
+
+  <hr>
+</body>
+</html>
